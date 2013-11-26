@@ -28,8 +28,9 @@ viable product if you will). It is implemented as a Javascript bookmarklet.
 
 - create a bookmark in your browser with the release link below 
 -- you may name it whatever, but it's a good idea to use "BOOST! SGI Salvage"
-- go to the [SGI Salvage website]()
-- after the page has loaded, click the bookmarklet you just created
+- go to the [SGI Salvage website](http://www.sgi.sk.ca/salvage_bid/index.html)
+- select the branch you wish to browse and click "Search"
+- after the page of available auction items has loaded, click the "BOOST! SGI Salvage" bookmarklet
 
 
 Releases
@@ -67,7 +68,7 @@ If you like dancing on the cutting edge, you may use the bookmarklet below. You 
 Salvage - dev". Be-warned, it's likely to be broken more times than a released version.
 
 ```
-javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();)
+javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();
 ```
 
 
