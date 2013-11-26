@@ -10,9 +10,10 @@ Features
 ---------
 
 - [ ] "Star" items you are interested in so you can keep an eye on them
+- [ ] Fast access to the items you have starred for instant review
 - [ ] Flow mode, for an album-like, big-picture view of items
 - [ ] Quickly see additional details of your starred items
-- [ ] Streamlined VIN lookup
+- [ ] Streamlined VIN lookup for vehicles
 
 
 
