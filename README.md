@@ -1,6 +1,11 @@
 BOOST! SGI Salvage
 ===================
 
+I like checking out the SGI Salvage website a lot. Sometimes I feel it is a bit unwieldy to navigate. I don't have 
+access to the source so I cannot improve it from the server side. This is my attempt to streamline the user experience 
+on the client side (in the browser).
+
+
 Features
 ---------
 
