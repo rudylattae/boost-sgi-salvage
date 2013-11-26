@@ -12,7 +12,7 @@ function getItemSummariesFromTable( table ) {
     var itemSummaries = {};
 
     table.find('tbody tr').each(function(i, tableRow) { 
-        if (i >= 30) return;
+        // if (i >= 30) return;  throttle for quick testing
         var summary = getItemSummaryFromRow( tableRow );
         updateItemRowWithThumbnail( tableRow, summary );
         itemSummaries[summary.id] = summary;
