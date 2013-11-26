@@ -26,7 +26,10 @@ Usage
 If you wish to give this a try. There is an early preview version (a proof of concept/functional prototype or minimum 
 viable product if you will). It is implemented as a Javascript bookmarklet.
 
-Drag the link below to your browser bookmarks bar.
+- create a bookmark in your browser with the release link below 
+-- you may name it whatever, but it's a good idea to use "BOOST! SGI Salvage"
+- go to the [SGI Salvage website]()
+- after the page has loaded, click the bookmarklet you just created
 
 
 Releases
@@ -34,7 +37,9 @@ Releases
 
 ### v 0.0.1-a   Nov 26 2013
 
-[BOOST! SGI Salvage](javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/0.0.1-a/boostSgiSalvage.js';})();)
+```
+javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/0.0.1-a/boostSgiSalvage.js';})();
+```
 
 - First public alpha.
 - Display primary images of items on the main screen
@@ -58,7 +63,11 @@ It also leverages the `jQuery` library used by the site.
 Development
 ------------
 
-If you like dancing on the cutting edge, you may use the bookmarklet below. Be-warned, it's more likely to be 
-broken more times than a released version.
+If you like dancing on the cutting edge, you may use the bookmarklet below. You should probably call it "BOOST! SGI 
+Salvage - dev". Be-warned, it's likely to be broken more times than a released version.
 
-[BOOST! SGI Salvage - dev](javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();)
+```
+javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();)
+```
+
+
