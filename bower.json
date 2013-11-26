@@ -1,0 +1,30 @@
+{
+  "name": "boost-sgi-salvage",
+  "version": "0.0.1-dev",
+  "homepage": "https://github.com/rudylattae/boost-sgi-salvage",
+  "authors": [
+    "Rudy Lattae <rudylattae@gmail.com>"
+  ],
+  "description": "Simplify the process of looking at items on auction at SGI Salvage",
+  "main": "boostSgiSalvage.js",
+  "keywords": [
+    "boost",
+    "sgi",
+    "salvage",
+    "website",
+    "improve",
+    "streamline"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "1.9.1"
+  }
+}

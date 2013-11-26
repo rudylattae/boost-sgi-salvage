@@ -1,3 +1,28 @@
+function getItemSummariesFromTable( table ) {
+    var itemSummaries = {};
+
+    table.find('tbody tr').each(function(i, tableRow) { 
+        var summary = getItemSummaryFromRow( tableRow );
+        itemSummaries[summary.id] = summary;
+    });
+
+    return itemSummaries;
+}
+
+
+function getItemSummaryFromRow( row ) {
+    var rawUrl = $('td:first a', row).attr('href'),
+        detailsUrl = parseUrl(rawUrl),
+        id = detailsUrl.params.stock_num
+
+    return {
+        id: id,
+        store: detailsUrl.params.store,
+        detailsUrl: detailsUrl
+    };
+}
+
+var items = getItemSummariesFromTable($('#bid_items'));
 
 
 
