@@ -34,7 +34,7 @@ Releases
 
 ### v 0.0.1-a   Nov 26 2013
 
-[BOOST! SGI Salvage](javascript:(function()%7Bjavascript%3A(function()%7Bdocument.body.appendChild(document.createElement('script')).src%3D'http%3A%2F%2Frawgithub.com%2Frudylattae%2Fboost-sgi-salvage%2F0.0.1-a%2FboostSgiSalvage.js'%3B%7D)()%7D)())
+[BOOST! SGI Salvage](javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/0.0.1-a/boostSgiSalvage.js';})();)
 
 - First public alpha.
 - Display primary images of items on the main screen
@@ -61,4 +61,4 @@ Development
 If you like dancing on the cutting edge, you may use the bookmarklet below. Be-warned, it's more likely to be 
 broken more times than a released version.
 
-[BOOST! SGI Salvage - dev](javascript:(function()%7Bjavascript%3A(function()%7Bdocument.body.appendChild(document.createElement('script')).src%3D'http%3A%2F%2Frawgithub.com%2Frudylattae%2Fboost-sgi-salvage%2Fmaster%2FboostSgiSalvage.js'%3B%7D)()%7D)())
+[BOOST! SGI Salvage - dev](javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();)
