@@ -1,0 +1,23 @@
+module.exports = {
+    // Project configuration.
+    tasks: {
+        pkg: {
+            name: "boostSgiSalvage"
+        },
+        cat: {
+            src: ["main.js", "lib/util.js", "lib/LocalDB"],
+            dest: "build/boostSgiSalvage.js"
+        },
+        min : {
+            js: {
+                source: "./build/*.js",
+                dest: "./build"
+            }
+        }
+    },
+
+    // Target task(s).
+    targets: {
+        package: "cat min"
+    }
+};
