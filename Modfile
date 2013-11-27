@@ -5,7 +5,7 @@ module.exports = {
             name: "boostSgiSalvage"
         },
         cat: {
-            src: ["main.js", "lib/util.js", "lib/LocalDB"],
+            src: ["./main.js", "./lib/util.js", "./lib/LocalDB"],
             dest: "build/boostSgiSalvage.js"
         },
         min : {
