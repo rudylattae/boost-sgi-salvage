@@ -46,8 +46,8 @@ javascript:(function(){document.body.appendChild(document.createElement('script'
 - Display primary images of items on the main screen
 
 
-Technical
-------------
+Environment and Dependencies
+------------------------------
 
 This project aims to augment the existing functionality and data that is available on the website. The 
 idea is that it merely get's injected into the page rendered by the site. After that, it's all Javascript and ajaxy 
