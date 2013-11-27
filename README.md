@@ -3,6 +3,9 @@ BOOST! SGI Salvage
 
 Simplify the process of looking at items on auction at SGI Salvage.
 
+The small idea
+---------------
+
 I like checking out the SGI Salvage website a lot. Sometimes I feel it is a bit unwieldy to navigate. I don't have 
 access to the source so I cannot improve it from the server side. This is my attempt to streamline the user experience 
 on the client side (in the browser).
