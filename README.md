@@ -11,25 +11,7 @@ on the client side (in the browser).
 Features
 ---------
 
-- Pictures of items right on the main page
-
-
-Next
-------
-
-### In the works
-
-### Planned
-
-- Local "catalogue" of the items listed on the website
-- "Star" items you are interested in so you can keep an eye on them
-
-### Ideas
-
-- Fast access to the items you have starred for instant review
-- Flow mode, for an album-like, big-picture view of items
-- Quickly see additional details of your starred items
-- Streamlined VIN lookup for vehicles
+- See the primary photo of each item on the main page
 
 
 Usage
@@ -58,6 +40,16 @@ javascript:(function(){document.body.appendChild(document.createElement('script'
 - Display primary images of items on the main screen
 
 
+### Cutting edge (in-development and unstable)
+
+If you like dancing on the cutting edge, you may use the bookmarklet below. You should probably call it "BOOST! SGI 
+Salvage - dev". Be-warned, it's likely to be broken more times than a released version.
+
+```
+javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();
+```
+
+
 Environment and Dependencies
 ------------------------------
 
@@ -78,22 +70,25 @@ Roadmap
 
 Where this thing is headed. 
 
-- [ ] Draft architecture for fetching, stashing and presenting the items
-- [ ] Design "star" UI + UX
-- [ ] Design flow UI + UX
-- [ ] Persist data to localStorage
--- Increase responsiveness and reduce traffic to server
-- [ ] Automate build + minify + package
+### In Progress
 
+- Persist data to localStorage to increase responsiveness and reduce server load
 
-Development
-------------
+### Next / Planned
 
-If you like dancing on the cutting edge, you may use the bookmarklet below. You should probably call it "BOOST! SGI 
-Salvage - dev". Be-warned, it's likely to be broken more times than a released version.
+- Local "catalogue" of the items listed on the website
+- "Star" items you are interested in so you can keep an eye on them
+- Draft architecture for fetching, stashing and presenting the items
+- Design "star" UI + UX
+- Design flow UI + UX
+- Automate build + minify + package
 
-```
-javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';})();
-```
+### Backlog
+
+- Fast access to the items you have starred for instant review
+- Flow mode, for an album-like, big-picture view of items
+- Quickly see additional details of your starred items
+- Streamlined VIN lookup for vehicles
+
 
 
