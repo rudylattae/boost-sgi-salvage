@@ -75,6 +75,7 @@ Where this thing is headed.
 
 ### In Progress
 
+- Automate build + minify + package
 - Persist data to localStorage to increase responsiveness and reduce server load
 
 ### Next / Planned
@@ -84,7 +85,6 @@ Where this thing is headed.
 - Draft architecture for fetching, stashing and presenting the items
 - Design "star" UI + UX
 - Design flow UI + UX
-- Automate build + minify + package
 
 ### Backlog
 
