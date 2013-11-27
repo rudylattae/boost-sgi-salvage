@@ -11,13 +11,25 @@ on the client side (in the browser).
 Features
 ---------
 
-- [ ] Visual and informative item list right on the front page
-- [ ] Local "catalogue" of the items listed on the website
-- [ ] "Star" items you are interested in so you can keep an eye on them
-- [ ] Fast access to the items you have starred for instant review
-- [ ] Flow mode, for an album-like, big-picture view of items
-- [ ] Quickly see additional details of your starred items
-- [ ] Streamlined VIN lookup for vehicles
+- Pictures of items right on the main page
+
+
+Next
+------
+
+### In the works
+
+### Planned
+
+- Local "catalogue" of the items listed on the website
+- "Star" items you are interested in so you can keep an eye on them
+
+### Ideas
+
+- Fast access to the items you have starred for instant review
+- Flow mode, for an album-like, big-picture view of items
+- Quickly see additional details of your starred items
+- Streamlined VIN lookup for vehicles
 
 
 Usage
@@ -66,7 +78,12 @@ Roadmap
 
 Where this thing is headed. 
 
-- ???
+- [ ] Draft architecture for fetching, stashing and presenting the items
+- [ ] Design "star" UI + UX
+- [ ] Design flow UI + UX
+- [ ] Persist data to localStorage
+-- Increase responsiveness and reduce traffic to server
+- [ ] Automate build + minify + package
 
 
 Development
