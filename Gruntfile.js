@@ -15,8 +15,8 @@ module.exports = function(grunt) {
                 '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
                 ' Licensed <%= pkg.license %> */\n',
-            packageHeader: '(function(window, localStorage){\n',
-            packageFooter: '\nreturn api; \n})(window, localStorage);',
+            packageHeader: '(function(window, localStorage, exports){\n',
+            packageFooter: '\nreturn api; \n})(window, localStorage, {});',
 
             distPackage: '<%= pkg.name %>.v<%= pkg.version %>.js',
             distPackageMin: '<%= pkg.name %>.v<%= pkg.version %>.min.js',
