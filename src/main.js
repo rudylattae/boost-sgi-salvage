@@ -12,7 +12,7 @@ function getItemSummariesFromTable( table ) {
     var itemSummaries = {};
 
     table.find('tbody tr').each(function(i, tableRow) { 
-        // if (i >= 30) return;  throttle for quick testing
+        if (i >= 2) return;  // throttle for quick testing
         var summary = getItemSummaryFromRow( tableRow );
         updateItemRowWithThumbnail( tableRow, summary );
         itemSummaries[summary.id] = summary;
@@ -50,7 +50,16 @@ function updateItemRowWithThumbnail( row, summary ) {
     });
 }
 
+function main() {
+    var t = $('#bid_items');
+    preparetableForThumbnails( t );
+    var items = getItemSummariesFromTable( t );
+}
 
-var t = $('#bid_items');
-preparetableForThumbnails( t );
-var items = getItemSummariesFromTable( t );
+
+// define public api
+var api = {
+    preparetableForThumbnails: preparetableForThumbnails,
+    getItemSummariesFromTable: getItemSummariesFromTable,
+    main: main
+};

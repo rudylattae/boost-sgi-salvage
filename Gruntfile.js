@@ -15,6 +15,8 @@ module.exports = function(grunt) {
                 '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
                 ' Licensed <%= pkg.license %> */\n',
+            packageHeader: '(function(window, localStorage){\n',
+            packageFooter: '\nreturn api; \n})(window, localStorage);',
 
             distPackage: '<%= pkg.name %>.v<%= pkg.version %>.js',
             distPackageMin: '<%= pkg.name %>.v<%= pkg.version %>.min.js',
@@ -24,11 +26,12 @@ module.exports = function(grunt) {
         concat: {
             options: {
                 separator: '\n\n',
-                banner: '<%= meta.banner %>',
+                banner: '<%= meta.banner %><%= meta.packageHeader %>',
+                footer: '<%= meta.packageFooter %>',
                 stripBanners: true
             },
             dist: {
-                src: ['lib/{,*/}*.js', 'src/main.js', 'src/utils.js'],
+                src: ['lib/{,*/}*.js', 'src/utils.js', 'src/main.js'],
                 dest: 'dist/<%= meta.distPackage %>'
             }
         },
@@ -36,7 +39,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 options: {
-                    banner: '<%= meta.banner %>'
+                    preserveComments: 'some'
                 },
                 src: '<%= concat.dist.dest %>',
                 dest: 'dist/<%= meta.distPackageMin %>'
