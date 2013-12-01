@@ -39,3 +39,4 @@ function parseUrl(url) {
     result.params = splitUrlParams( result.search );
     return result;
 };
+

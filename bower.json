@@ -26,5 +26,8 @@
   ],
   "devDependencies": {
     "jquery": "1.9.1"
+  },
+  "dependencies": {
+    "depot": "~0.1.6"
   }
 }

@@ -55,12 +55,3 @@ function main() {
     preparetableForThumbnails( t );
     var items = getItemSummariesFromTable( t );
 }
-
-
-// define public api
-var api = {
-    main: main,
-    preparetableForThumbnails: preparetableForThumbnails,
-    getItemSummariesFromTable: getItemSummariesFromTable,
-    LDB: exports.LDB
-};
