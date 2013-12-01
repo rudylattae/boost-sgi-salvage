@@ -1,4 +1,4 @@
-var items = depot('boostSgiSalvage_items');
+var items = depot('boostSgiSalvage_items', {idAttribute:'id'});
 
 
 function preparetableForThumbnails( table ) {
