@@ -1,3 +1,6 @@
+var items = depot('boostSgiSalvage_items');
+
+
 function preparetableForThumbnails( table ) {
     table.find('thead tr').prepend('<th class="header">&nbsp;</th>');
     table.find('tbody tr').each(function(i, row) {
@@ -9,16 +12,14 @@ function preparetableForThumbnails( table ) {
 }
 
 function getItemSummariesFromTable( table ) {
-    var itemSummaries = {};
 
     table.find('tbody tr').each(function(i, tableRow) { 
-        if (i >= 2) return;  // throttle for quick testing
+        if (i >= 4) return;  // throttle for quick testing
         var summary = getItemSummaryFromRow( tableRow );
+        items.save(summary);
         updateItemRowWithThumbnail( tableRow, summary );
-        itemSummaries[summary.id] = summary;
     });
 
-    return itemSummaries;
 }
 
 
@@ -53,5 +54,5 @@ function updateItemRowWithThumbnail( row, summary ) {
 function main() {
     var t = $('#bid_items');
     preparetableForThumbnails( t );
-    var items = getItemSummariesFromTable( t );
+    getItemSummariesFromTable( t );
 }
