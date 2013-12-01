@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-    require('time-grunt')(grunt);
+    // require('time-grunt')(grunt);
     
     // Project configuration.
     grunt.initConfig({
@@ -15,12 +15,19 @@ module.exports = function(grunt) {
                 '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
                 ' Licensed <%= pkg.license %> */\n',
-            packageHeader: '(function(window, exports){\n',
-            packageFooter: '\nreturn api; \n})(window, {});',
+            packageHeader: '(function(window){\n',
+            packageFooter: '\nreturn api; \n})(window);',
 
             distPackage: '<%= pkg.name %>.v<%= pkg.version %>.js',
             distPackageMin: '<%= pkg.name %>.v<%= pkg.version %>.min.js',
             distBookmarklet: 'bookmarklet-<%= pkg.name %>.v<%= pkg.version %>.js'
+        },
+
+        bower_concat: {
+            dist: {
+                exclude: ['jquery', 'es5-shim'],
+                dest: 'build/bower_components.js'
+            }
         },
 
         concat: {
@@ -31,7 +38,7 @@ module.exports = function(grunt) {
                 stripBanners: true
             },
             dist: {
-                src: ['lib/{,*/}*.js', 'src/utils.js', 'src/main.js'],
+                src: ['lib/{,*/}*.js', '<%= bower_concat.dist.dest %>', 'src/utils.js', 'src/main.js', 'src/api.js'],
                 dest: 'dist/<%= meta.distPackage %>'
             }
         },
@@ -57,6 +64,14 @@ module.exports = function(grunt) {
 
         js2uri: {
             'dist/<%= meta.distBookmarklet %>' : ['<%= uglify.bkm.dest %>']
+        },
+
+        watch: {
+            options: { 
+                nonull: true
+            },
+            files: ['Gruntfile.js', 'src/*.js', 'lib/*.js'],
+            tasks: ['default'],
         }
     });
 
@@ -64,6 +79,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('js2uri');
 
     // Tasks
-    grunt.registerTask('default', ['concat', 'uglify', 'js2uri']);
+    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'js2uri']);
+    grunt.registerTask('devcycle', ['default', 'watch']);
 
 };
