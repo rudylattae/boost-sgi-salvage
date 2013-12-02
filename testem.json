@@ -8,5 +8,6 @@
     "src/main.js",
     "src/utils.js",
     "spec/**/*.js"
-  ]
+  ],
+  "unsafe_file_serving": true
 }

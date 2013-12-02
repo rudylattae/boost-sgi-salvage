@@ -20,8 +20,11 @@ describe('TableRowIterator', function() {
 
     describe('iterating', function() {
 
-        xit('starts of with the first row', function() {
-            
+        it('starts of with the first row', function() {
+            loadFixtures('spec/fixtures/bid_items.html');
+            console.log($('#jasmine-fixtures').html());
+            console.log($('#bid_items').html());
+            console.log($('#bid-items').html());
         });
     });
 });
