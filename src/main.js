@@ -1,4 +1,4 @@
-var items = depot('boostSgiSalvage_items', {idAttribute:'id'});
+//var items = depot('boostSgiSalvage_items', {idAttribute:'id'});
 
 
 function preparetableForThumbnails( table ) {
@@ -14,10 +14,10 @@ function preparetableForThumbnails( table ) {
 function getItemSummariesFromTable( table ) {
 
     table.find('tbody tr').each(function(i, tableRow) { 
-        if (i >= 4) return;  // throttle for quick testing
+        // if (i >= 4) return;  // throttle for quick testing
         var summary = getItemSummaryFromRow( tableRow );
         items.save(summary);
-        updateItemRowWithThumbnail( tableRow, summary );
+        // updateItemRowWithThumbnail( tableRow, summary );
     });
 
 }
