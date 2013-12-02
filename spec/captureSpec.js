@@ -20,8 +20,8 @@ describe('TableRowIterator', function() {
 
     describe('iterating', function() {
 
-        it('starts of with the first row', function() {
-            // pending
+        xit('starts of with the first row', function() {
+            
         });
     });
 });
