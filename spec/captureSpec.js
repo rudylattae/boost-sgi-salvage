@@ -15,16 +15,29 @@ describe('TableRowIterator', function() {
         it('initializes with table element', function() {
             var rows = new capture.TableRowIterator({});
 
-            expect( rows ).not.toBe( null );
+            expect( rows ).not.toEqual( null );
         });
 
     });
 
     describe('iterating', function() {
 
-        it('starts of with the first row', function() {
+        var rows;
+
+        beforeEach(function() {
             loadFixtures('bid_items.html');
-            console.log($('#bid_items').html());
+            rows = new capture.TableRowIterator($('#bid_items'));
+        });
+
+        it('#hasNext returns true when there are still items to process', function() {
+            expect( rows.hasNext() ).toEqual( true );
+        });
+
+        it('starts of with the first row', function() {
+            var expectedItem = {
+                year: 2014
+            };
+            expect( rows.next() ).toEqual( expectedItem );
         });
     });
 });
