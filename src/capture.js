@@ -13,23 +13,26 @@ var capture = (function() {
 
     TableRowIterator.prototype.next = function next() {
         if ( !this.hasNext() ) throw new Error('StopIteration');
-        
-        var row = this._currentRow(),
-            cells = row.find('td'),
-            data = {},
-            i = 0,
-            max = this._columns.length;
 
-        for (; i < max; i++) {
-            data[this._columns[i]] = cells[i].innerText
-        }
-
+        var data = this._serializeRowData(this._currentRow());
         this._cursor = this._cursor + 1;
         return data;
     };
 
     TableRowIterator.prototype._currentRow = function() {
         return this._el.find('tr:eq(' + this._cursor + ')');
+    };
+
+    TableRowIterator.prototype._serializeRowData = function( row ) {
+        var serialized = {},
+            cells = row.find('td'),
+            i = 0,
+            max = this._columns.length;
+
+        for (; i < max; i++) {
+            serialized[this._columns[i]] = cells[i].innerText
+        }
+        return serialized;
     };
 
     // export public api

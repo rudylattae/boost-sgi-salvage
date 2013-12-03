@@ -23,11 +23,20 @@ describe('TableRowIterator', function() {
     describe('iterating', function() {
 
         var rows;
-
         beforeEach(function() {
             loadFixtures('bid_items.html');
             rows = new capture.TableRowIterator($('#bid_items'));
         });
+
+        function callNext( times ) {
+            var i = 1;
+            return function() {
+                for (; i <= times; i++) {
+                    rows.next();
+                }
+            }
+        }
+
 
         it('#hasNext, returns true when there are still items to process', function() {
             expect( rows.hasNext() ).toEqual( true );
@@ -65,25 +74,13 @@ describe('TableRowIterator', function() {
 
         it('#hasNext, returns false when there are no more items to process', function() {
             // go to sixth (last) row
-            rows.next();
-            rows.next();
-            rows.next();
-            rows.next();
-            rows.next();
-            rows.next();
+            callNext(6)();
             expect( rows.hasNext() ).toEqual( false );
         });
 
 
         it('#next, throws and exception if there are no more items remaining', function() {
-            function callNext( times ) {
-                var i = 0;
-                return function() {
-                    for (; i <= times; i++) {
-                        rows.next();
-                    }
-                }
-            }
+
 
             expect( callNext(7) ).toThrow('StopIteration');
         });
