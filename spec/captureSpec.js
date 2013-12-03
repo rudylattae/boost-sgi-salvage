@@ -29,11 +29,11 @@ describe('TableRowIterator', function() {
             rows = new capture.TableRowIterator($('#bid_items'));
         });
 
-        it('#hasNext returns true when there are still items to process', function() {
+        it('#hasNext, returns true when there are still items to process', function() {
             expect( rows.hasNext() ).toEqual( true );
         });
 
-        it('#next starts off with the first row', function() {
+        it('#next, first call serializes first row', function() {
             var expectedItem =  {
                 year : '2014', 
                 make : 'TRAILERS ENCLOSED', 
@@ -47,13 +47,45 @@ describe('TableRowIterator', function() {
             expect( rows.next() ).toEqual( expectedItem );
         });
 
-        xit('#next, second call jumps to second row', function() {
-            var expectedItem = {
-                year: 2013
+        it('#next, second call serializes second row', function() {
+            var expectedItemData = {
+                year: '2013',
+                make: 'HONDA',
+                stockNumber: 'M132302'
             };
             rows.next();
 
-            expect( rows.next() ).toEqual( expectedItem );
+            var actualItem = rows.next();
+
+            expect( actualItem.stockNumber ).toEqual( expectedItemData.stockNumber );
+            expect( actualItem.year ).toEqual( expectedItemData.year );
+            expect( actualItem.make ).toEqual( expectedItemData.make );
+        });
+
+
+        it('#hasNext, returns false when there are no more items to process', function() {
+            // go to sixth (last) row
+            rows.next();
+            rows.next();
+            rows.next();
+            rows.next();
+            rows.next();
+            rows.next();
+            expect( rows.hasNext() ).toEqual( false );
+        });
+
+
+        it('#next, throws and exception if there are no more items remaining', function() {
+            function callNext( times ) {
+                var i = 0;
+                return function() {
+                    for (; i <= times; i++) {
+                        rows.next();
+                    }
+                }
+            }
+
+            expect( callNext(7) ).toThrow('StopIteration');
         });
     });
 });

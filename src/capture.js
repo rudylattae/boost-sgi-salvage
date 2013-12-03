@@ -8,11 +8,13 @@ var capture = (function() {
     }
 
     TableRowIterator.prototype.hasNext = function hasNext() {
-        return true;
+        return this._currentRow() ? this._currentRow().length > 0 : false;
     };
 
     TableRowIterator.prototype.next = function next() {
-        var row = this._el.find('tr:eq(' + this._cursor + ')'),
+        if ( !this.hasNext() ) throw new Error('StopIteration');
+        
+        var row = this._currentRow(),
             cells = row.find('td'),
             data = {},
             i = 0,
@@ -24,6 +26,10 @@ var capture = (function() {
 
         this._cursor = this._cursor + 1;
         return data;
+    };
+
+    TableRowIterator.prototype._currentRow = function() {
+        return this._el.find('tr:eq(' + this._cursor + ')');
     };
 
     // export public api
