@@ -33,10 +33,26 @@ describe('TableRowIterator', function() {
             expect( rows.hasNext() ).toEqual( true );
         });
 
-        it('starts of with the first row', function() {
-            var expectedItem = {
-                year: 2014
+        it('#next starts off with the first row', function() {
+            var expectedItem =  {
+                year : '2014', 
+                make : 'TRAILERS ENCLOSED', 
+                model : 'STEALTH ENCLOSED TRAILER', 
+                branch : 'Regina',
+                location: 'SREASTFENCE',
+                stockNumber: 'R136465',
+                closingDate: 'Dec 04 2013',
+                reservePrice: '$3,650.00'
             };
+            expect( rows.next() ).toEqual( expectedItem );
+        });
+
+        xit('#next, second call jumps to second row', function() {
+            var expectedItem = {
+                year: 2013
+            };
+            rows.next();
+
             expect( rows.next() ).toEqual( expectedItem );
         });
     });
