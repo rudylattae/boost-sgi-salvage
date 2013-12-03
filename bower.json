@@ -25,7 +25,8 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "1.9.1"
+    "jquery": "1.9.1",
+    "jasmine-jquery": "~1.5.93"
   },
   "dependencies": {
     "depot": "~0.1.6"

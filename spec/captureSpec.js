@@ -1,3 +1,5 @@
+jasmine.getFixtures().fixturesPath = 'spec/fixtures';
+
 describe('TableRowIterator', function() {
 
     describe('initializing', function() {
@@ -19,17 +21,9 @@ describe('TableRowIterator', function() {
     });
 
     describe('iterating', function() {
-        it('prime', function() {
-            loo = readFixtures('spec/fixtures/bid-items.html');
-            // loadFixtures('spec/fixtures/bid-items.html');
-        });
 
         it('starts of with the first row', function() {
-            poo = readFixtures('spec/fixtures/bid-items.html');
-            foo = sandbox(readFixtures('spec/fixtures/bid-items.html'));
-            console.log('poo', poo);
-            console.log(foo);
-            console.log($('#jasmine-fixtures').html());
+            loadFixtures('bid_items.html');
             console.log($('#bid_items').html());
         });
     });
