@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 
         bower_concat: {
             dist: {
-                exclude: ['jquery', 'es5-shim'],
+                exclude: ['jquery', 'es5-shim', 'jasmine-jquery'],
                 dest: 'build/bower_components.js'
             }
         },
@@ -38,7 +38,14 @@ module.exports = function(grunt) {
                 stripBanners: true
             },
             dist: {
-                src: ['lib/{,*/}*.js', '<%= bower_concat.dist.dest %>', 'src/utils.js', 'src/main.js', 'src/api.js'],
+                src: [
+                    'lib/{,*/}*.js', 
+                    '<%= bower_concat.dist.dest %>', 
+                    'src/utils.js', 
+                    'src/main.js', 
+                    'src/capture.js', 
+                    'src/api.js'
+                ],
                 dest: 'dist/<%= meta.distPackage %>'
             }
         },
