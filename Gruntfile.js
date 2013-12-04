@@ -77,7 +77,7 @@ module.exports = function(grunt) {
             options: { 
                 nonull: true
             },
-            files: ['Gruntfile.js', 'src/*.js', 'lib/*.js'],
+            files: ['Gruntfile.js', 'src/*.js'],
             tasks: ['default'],
         }
     });

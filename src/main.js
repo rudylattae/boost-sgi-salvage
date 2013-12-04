@@ -1,4 +1,5 @@
-//var items = depot('boostSgiSalvage_items', {idAttribute:'id'});
+// collection of items
+var items = null;
 
 
 function preparetableForThumbnails( table ) {
@@ -52,6 +53,10 @@ function updateItemRowWithThumbnail( row, summary ) {
 }
 
 function main() {
+    boost.items = capture.createRepo('boostSgiSalvage_items', {idAttribute:'id'});
+}
+
+function mainOld() {
     var t = $('#bid_items');
     preparetableForThumbnails( t );
     getItemSummariesFromTable( t );

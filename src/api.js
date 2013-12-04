@@ -3,7 +3,7 @@
 var api = {
     capture: capture,
     main: main,
-    // items: items,
+    items: items,
     preparetableForThumbnails: preparetableForThumbnails,
     getItemSummariesFromTable: getItemSummariesFromTable
 };
