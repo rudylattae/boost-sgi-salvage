@@ -1,6 +1,3 @@
-// collection of items
-var items = null;
-
 
 function preparetableForThumbnails( table ) {
     table.find('thead tr').prepend('<th class="header">&nbsp;</th>');
@@ -52,8 +49,15 @@ function updateItemRowWithThumbnail( row, summary ) {
     });
 }
 
+// collection of items
+var items = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'});
+var dataSource = new TableRowIterator($('bid_itmes'));
+
 function main() {
-    boost.items = capture.createRepo('boostSgiSalvage_items', {idAttribute:'id'});
+    while( dataSource.hasNext() ) {
+        var item = dataSource.next();
+        if ( !items.find(item.stockNumber) ) items.add( item );
+    }
 }
 
 function mainOld() {

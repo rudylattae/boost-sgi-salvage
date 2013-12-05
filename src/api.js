@@ -1,7 +1,9 @@
 
 // define public api
 var api = {
-    capture: capture,
+    TableRowIterator: TableRowIterator,
+    ItemRepository: ItemRepository,
+    createRepo: createRepo,
     main: main,
     items: items,
     preparetableForThumbnails: preparetableForThumbnails,
