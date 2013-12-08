@@ -1,3 +1,6 @@
+"use strict";
+
+var depot = require('depot');
 
 function TableRowIterator( el ) {
     if ( typeof el === 'undefined' ) throw new Error('You must provide a table element');
@@ -72,4 +75,9 @@ ItemRepository.prototype.count = function count() {
 
 function createRepo( namespace, options ) {
     return new ItemRepository( depot(namespace, options) );
+}
+
+module.exports = {
+    TableRowIterator: TableRowIterator,
+    createRepo: createRepo
 }

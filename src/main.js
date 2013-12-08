@@ -1,3 +1,6 @@
+var capture = require('./capture');
+var $ = require('jquery')(window);
+
 
 function preparetableForThumbnails( table ) {
     table.find('thead tr').prepend('<th class="header">&nbsp;</th>');
@@ -50,8 +53,8 @@ function updateItemRowWithThumbnail( row, summary ) {
 }
 
 // collection of items
-var items = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'});
-var dataSource = new TableRowIterator($('bid_itmes'));
+var items = capture.createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'});
+var dataSource = new capture.TableRowIterator($('bid_itmes'));
 
 function main() {
     while( dataSource.hasNext() ) {
@@ -65,3 +68,7 @@ function mainOld() {
     preparetableForThumbnails( t );
     getItemSummariesFromTable( t );
 }
+
+console.log("loaded, now what?");
+
+module.exports = main;
