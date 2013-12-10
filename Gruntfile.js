@@ -15,8 +15,8 @@ module.exports = function(grunt) {
                 '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
                 ' Licensed <%= pkg.license %> */\n',
-            packageHeader: '(function(window){\n',
-            packageFooter: '\nreturn api; \n})(window);',
+            packageHeader: '(function(name, root){\n',
+            packageFooter: '\nreturn api; \n})("boostSgiSalvage", window);',
 
             distPackage: '<%= pkg.name %>.v<%= pkg.version %>.js',
             distPackageMin: '<%= pkg.name %>.v<%= pkg.version %>.min.js',
@@ -41,9 +41,9 @@ module.exports = function(grunt) {
                 src: [
                     'lib/{,*/}*.js', 
                     '<%= bower_concat.dist.dest %>', 
+                    'src/core.js', 
                     'src/utils.js', 
                     'src/main.js', 
-                    'src/capture.js', 
                     'src/api.js'
                 ],
                 dest: 'dist/<%= meta.distPackage %>'
