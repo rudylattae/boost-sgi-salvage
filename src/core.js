@@ -88,7 +88,7 @@ var core = (function() {
     ItemSummaryImporter.prototype.run = function( force ) {
         while( this._iter.hasNext() ) {
             var item = this._iter.next();
-            if ( !this._repo.find( item.stockNumber ) || force ) {
+            if ( !this._repo.get( item.stockNumber ) || force ) {
                 this._repo.add( item );
             }
         }

@@ -64,7 +64,7 @@ var main = (function($) {
     }
 
     function wireup() {
-        var dataSource = new core.TableRowIterator($('#bid_items')),
+        var dataSource = new core.TableRowIterator($('#bid_items'), console),
             repo = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'}),
             importer = new core.ItemSummaryImporter( dataSource, repo );
 
