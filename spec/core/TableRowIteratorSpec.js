@@ -9,7 +9,7 @@ describe('core.TableRowIterator', function() {
                 return new core.TableRowIterator();
             }
 
-            expect( createWithoutDomNode ).toThrow("You must provide a table element");
+            expect( createWithoutDomNode ).toThrow('You must provide a table element');
         });
 
         it('initializes with table element', function() {
@@ -18,6 +18,13 @@ describe('core.TableRowIterator', function() {
             expect( rows ).not.toEqual( null );
         });
 
+        it('logs a warning to the logger if no rows detected in table element', function() {
+            var emptyTable = sandbox().append('<table></table>').find('table'),
+                logger = jasmine.createSpyObj('logger', ['log', 'warn']),
+                rows = new core.TableRowIterator(emptyTable, logger);
+
+            expect( logger.warn ).toHaveBeenCalledWith('The provided table does not have any rows');
+        });
     });
 
     describe('iterating', function() {

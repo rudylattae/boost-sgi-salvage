@@ -2,12 +2,15 @@ var core = (function() {
     "use strict";
 
 
-    function TableRowIterator( el ) {
+    function TableRowIterator( el, logger ) {
         if ( typeof el === 'undefined' ) throw new Error('You must provide a table element');
         this._el = el;
         this._cursor = 1;
         this._columns = ['year', 'make', 'model', 'branch', 'location', 'stockNumber', 
                             'closingDate', 'reservePrice'];
+
+        if ( $('tr', this._el) && logger && logger.warn ) 
+            logger.warn('The provided table does not have any rows');
     }
 
     TableRowIterator.prototype.hasNext = function hasNext() {
