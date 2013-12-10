@@ -9,7 +9,7 @@ var core = (function() {
         this._columns = ['year', 'make', 'model', 'branch', 'location', 'stockNumber', 
                             'closingDate', 'reservePrice'];
 
-        if ( $('tr', this._el) && logger && logger.warn ) 
+        if ( $('tr', this._el).length === 0 && logger && logger.warn ) 
             logger.warn('The provided table does not have any rows');
     }
 
