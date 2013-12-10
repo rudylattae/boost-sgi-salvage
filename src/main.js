@@ -52,27 +52,37 @@ var main = (function($) {
         });
     }
 
-    // collection of items
-    var items = core.createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'});
-    var dataSource = new core.TableRowIterator($('bid_itmes'));
-
-    function main() {
-        while( dataSource.hasNext() ) {
-            var item = dataSource.next();
-            if ( !items.find(item.stockNumber) ) items.add( item );
-        }
-    }
-
     function mainOld() {
         var t = $('#bid_items');
         preparetableForThumbnails( t );
         getItemSummariesFromTable( t );
     }
 
-    console.log("loaded, now what?");
+
+    function createRepo( namespace, options ) {
+        return new core.ItemRepository( depot(namespace, options) );
+    }
+
+    function wireup() {
+        var dataSource = new core.TableRowIterator($('#bid_items')),
+            repo = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'}),
+            importer = new core.ItemSummaryImporter( dataSource, repo );
+
+        return importer;
+    }
+
+    function main( holdIt ) {
+        var importer = wireup();
+
+        if (holdIt) return importer;
+        else importer.run();
+    }
+
 
     return { 
-        main: main
+        main: main,
+        createRepo: createRepo,
+        wireup: wireup
     };
 
 })(jQuery);

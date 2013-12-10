@@ -39,7 +39,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'lib/{,*/}*.js', 
+                    //'lib/{,*/}*.js', 
                     '<%= bower_concat.dist.dest %>', 
                     'src/core.js', 
                     'src/utils.js', 
@@ -53,7 +53,8 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 options: {
-                    preserveComments: 'some'
+                    preserveComments: 'some',
+                    report: 'min'
                 },
                 src: '<%= concat.dist.dest %>',
                 dest: 'dist/<%= meta.distPackageMin %>'

@@ -38,6 +38,10 @@ var core = (function() {
         return serialized;
     };
 
+    TableRowIterator.prototype.reset = function reset() {
+        this._cursor = 1;
+    };
+
 
     function ItemRepository( localStorageWrapper ) {
         if ( typeof localStorageWrapper === 'undefined' ) throw new Error('You must provide a localStorageWrapper');
@@ -73,14 +77,24 @@ var core = (function() {
     };
 
 
-    function createRepo( namespace, options ) {
-        return new ItemRepository( depot(namespace, options) );
+    function ItemSummaryImporter( tableRowIterator, itemRepository ) {
+        this._iter = tableRowIterator;
+        this._repo = itemRepository;
     }
+
+    ItemSummaryImporter.prototype.run = function( force ) {
+        while( this._iter.hasNext() ) {
+            var item = this._iter.next();
+            if ( !this._repo.find( item.stockNumber ) || force ) {
+                this._repo.add( item );
+            }
+        }
+    };
 
 
     return {
         TableRowIterator: TableRowIterator,
         ItemRepository: ItemRepository,
-        createRepo: createRepo
+        ItemSummaryImporter: ItemSummaryImporter
     };
 })();

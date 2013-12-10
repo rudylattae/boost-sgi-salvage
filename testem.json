@@ -4,9 +4,9 @@
     "bower_components/jquery/jquery.js",
     "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
     "lib/jasmine-dom-matchers.js",
-    "src/capture.js",
-    "src/main.js",
+    "src/core.js",
     "src/utils.js",
+    "src/main.js",
     "spec/**/*.js"
   ],
   "unsafe_file_serving": true
