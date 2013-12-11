@@ -65,7 +65,16 @@ var core = (function() {
     };
 
     ItemRepository.prototype.find = function find( query ) {
-        return this._ls.find( query );
+        var entities = this._ls.find( query ),
+            i = 0,
+            max = entities.length,
+            models = [];
+
+        if ( typeof this._Model === 'undefined' ) return entities;
+        for (; i < max; i++) {
+            models.push( new this._Model( entities[i] ) );
+        }
+        return models;
     };
 
     ItemRepository.prototype.get = function get( id ) {

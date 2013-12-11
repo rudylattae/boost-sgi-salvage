@@ -58,6 +58,13 @@ describe('core.ItemRepository', function() {
             expect( item ).toBeAnInstanceOf( ItemModel );
         });
 
+        it('#find, returns models for matching entities', function() {
+            var items = repo.find( {some:'criteria'} );
+
+            expect( items[0] ).toBeAnInstanceOf( ItemModel );
+            expect( items[1] ).toBeAnInstanceOf( ItemModel );
+        });
+
         xit('#add, persists the derived entity from the model', function() {
 
         });
