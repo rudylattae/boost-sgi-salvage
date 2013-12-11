@@ -54,7 +54,8 @@ var core = (function() {
     }
 
     ItemRepository.prototype.add = function add( item ) {
-        return this._ls.save( item );
+        if ( typeof this._Model === 'undefined' ) return this._ls.save( item );
+        this._ls.save( item.toJS() );
     };
 
     ItemRepository.prototype.update = function update( item ) {

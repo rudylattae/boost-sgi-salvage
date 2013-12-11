@@ -1,6 +1,8 @@
 describe('core.ItemRepository', function() {
 
     function ItemModel( data ) {}
+    ItemModel.prototype.toJS = function toJS() {};
+
 
     describe('initializing', function() {
 
@@ -37,7 +39,7 @@ describe('core.ItemRepository', function() {
 
         beforeEach(function() {
             localStorageWrapper = 
-                jasmine.createSpyObj('localStorageWrapper', ['add', 'update', 'find', 'get', 'all']);
+                jasmine.createSpyObj('localStorageWrapper', ['save', 'update', 'find', 'get', 'all']);
 
             localStorageWrapper.get.andReturn( items[2] );
             localStorageWrapper.find.andReturn( items.slice(1,3) );
@@ -73,8 +75,15 @@ describe('core.ItemRepository', function() {
             }
         });
 
-        xit('#add, persists the derived entity from the model', function() {
+        it('#add, persists the derived entity from the model', function() {
+            var data = {stockNumber:'Y3534', year:'2014', make: 'AUDI'},
+                model = new ItemModel;
+            spyOn(model, 'toJS').andReturn( data );
 
+            repo.add( model );
+            
+            expect( model.toJS ).toHaveBeenCalled();
+            expect( localStorageWrapper.save ).toHaveBeenCalledWith( data );
         });
     });
 });
