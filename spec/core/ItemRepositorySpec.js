@@ -85,6 +85,17 @@ describe('core.ItemRepository', function() {
             expect( model.toJS ).toHaveBeenCalled();
             expect( localStorageWrapper.save ).toHaveBeenCalledWith( data );
         });
+
+        it('#update, updates record based on the derived entity from the model', function() {
+            var data = {stockNumber:'S7783', year:'2013', make: 'LEXUS'},
+                model = new ItemModel;
+            spyOn(model, 'toJS').andReturn( data );
+
+            repo.update( model );
+            
+            expect( model.toJS ).toHaveBeenCalled();
+            expect( localStorageWrapper.update ).toHaveBeenCalledWith( data );
+        });
     });
 });
         

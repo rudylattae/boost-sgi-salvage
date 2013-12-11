@@ -55,11 +55,12 @@ var core = (function() {
 
     ItemRepository.prototype.add = function add( item ) {
         if ( typeof this._Model === 'undefined' ) return this._ls.save( item );
-        this._ls.save( item.toJS() );
+        return this._ls.save( item.toJS() );
     };
 
     ItemRepository.prototype.update = function update( item ) {
-        return this._ls.update( item );
+        if ( typeof this._Model === 'undefined' ) return this._ls.update( item );
+        return this._ls.update( item.toJS() );
     };
 
     ItemRepository.prototype.remove = function remove( query ) {
