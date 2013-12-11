@@ -46,9 +46,10 @@ var core = (function() {
     };
 
 
-    function ItemRepository( localStorageWrapper ) {
+    function ItemRepository( localStorageWrapper, Model ) {
         if ( typeof localStorageWrapper === 'undefined' ) throw new Error('You must provide a localStorageWrapper');
         this._ls = localStorageWrapper;
+        this._Model = Model;
     }
 
     ItemRepository.prototype.add = function add( item ) {
@@ -68,7 +69,9 @@ var core = (function() {
     };
 
     ItemRepository.prototype.get = function get( id ) {
-        return this._ls.get( id );
+        var entity = this._ls.get( id );
+        if ( typeof this._Model === 'undefined' ) return entity;
+        return new this._Model( entity );
     };
 
     ItemRepository.prototype.all = function all() {
