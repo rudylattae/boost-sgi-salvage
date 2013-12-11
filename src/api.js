@@ -3,6 +3,7 @@
 var api = {
     core: core,
     utils: utils,
+    models: models,
     main: main
 };
 

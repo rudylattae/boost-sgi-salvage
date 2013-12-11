@@ -43,6 +43,7 @@ module.exports = function(grunt) {
                     '<%= bower_concat.dist.dest %>', 
                     'src/core.js', 
                     'src/utils.js', 
+                    'src/models.js', 
                     'src/main.js', 
                     'src/api.js'
                 ],
