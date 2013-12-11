@@ -65,6 +65,14 @@ describe('core.ItemRepository', function() {
             expect( items[1] ).toBeAnInstanceOf( ItemModel );
         });
 
+        it('#all, returns models for all entities', function() {
+            var items = repo.all();
+
+            for (var i=0; i<items.length; i++) {
+                expect( items[i] ).toBeAnInstanceOf( ItemModel );                
+            }
+        });
+
         xit('#add, persists the derived entity from the model', function() {
 
         });

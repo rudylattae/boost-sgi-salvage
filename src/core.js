@@ -46,6 +46,7 @@ var core = (function() {
     };
 
 
+
     function ItemRepository( localStorageWrapper, Model ) {
         if ( typeof localStorageWrapper === 'undefined' ) throw new Error('You must provide a localStorageWrapper');
         this._ls = localStorageWrapper;
@@ -65,31 +66,45 @@ var core = (function() {
     };
 
     ItemRepository.prototype.find = function find( query ) {
-        var entities = this._ls.find( query ),
-            i = 0,
-            max = entities.length,
-            models = [];
+        var entities = this._ls.find( query );
 
         if ( typeof this._Model === 'undefined' ) return entities;
-        for (; i < max; i++) {
-            models.push( new this._Model( entities[i] ) );
-        }
-        return models;
+        return this._toModels( entities );
     };
 
     ItemRepository.prototype.get = function get( id ) {
         var entity = this._ls.get( id );
+
         if ( typeof this._Model === 'undefined' ) return entity;
-        return new this._Model( entity );
+        return this._toModel( entity );
     };
 
     ItemRepository.prototype.all = function all() {
-        return this._ls.all();
+        var entities = this._ls.all();
+
+        if ( typeof this._Model === 'undefined' ) return entities;
+        return this._toModels( entities );
     };
 
     ItemRepository.prototype.count = function count() {
         return this._ls.size();
     };
+
+    ItemRepository.prototype._toModels = function( entities ) {
+        var i = 0,
+            max = entities.length,
+            models = [];
+
+        for (; i < max; i++) {
+            models.push( this._toModel( entities[i] ) );
+        }
+        return models;
+    };
+
+    ItemRepository.prototype._toModel = function( entity ) {
+        return new this._Model( entity );
+    };
+
 
 
     function ItemSummaryImporter( tableRowIterator, itemRepository ) {
