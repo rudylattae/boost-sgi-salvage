@@ -1,118 +1,61 @@
 (function(){
-    var dev = 'http://localhost:7357/dist/boost-sgi-salvage.v0.0.2-dev.js',
-        live = 'https://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js';
+
+    // dev
+    var js = 'http://localhost:7357/dist/boost-sgi-salvage.v0.0.2-dev.js',
+        css = '';
+        
+    // live
+    // var js = 'https://rawgithub.com/rudylattae/boost-sgi-salvage/master/boostSgiSalvage.js'
+    //     css = '';
+
+    main();
 
 
-
-    var doc=document,
-        head=doc.getElementsByTagName('head')[0];
-
-    function load( url, callback ) {
-        var loading = 0,
-            i = 0,
-            max,
-            doneLoading;
-
-        if ( url instanceof Array) {
-            max = url.length;
-            loading = max;
-            doneLoading = getGroupedCallback( callback, loading );
-            for (; i < max; i++) {
-                if ( !resourceIsAlreadyLoaded( url[i] ) ) loadResource( url[i], doneLoading );
-            }
-        } else 
-            if ( !resourceIsAlreadyLoaded( url ) )  loadResource( url, callback );
-    }
-
-    function loadResource( url, callback ) {
-        head.appendChild(getResourceLoader( url, callback )());
-    }
-
-    function resourceIsAlreadyLoaded( url ) {
-        if (/\.css[^\.]*$/.test( url )){
-            return linkExists( url );
-        } else {
-            return scriptExists( url );
+    function main() {
+        if ( !isAvailable( js ) ) {
+            toast(js, css);
         }
     }
 
+    function isAvailable( url ) {
+        if ( /\.css[^\.]*$/.test( url ) )
+            return linkExists( url );
+        else 
+            return scriptExists( url );
+    }
+
     function linkExists( url ) {
-        var els = doc.getElementsByTagName('link');
+        var els = document.getElementsByTagName('link');
         return hasElementWithAttributeValue(els, 'href', url);
     }
 
     function scriptExists( url ) {
-        var els = doc.getElementsByTagName('script');
+        var els = document.getElementsByTagName('script');
         return hasElementWithAttributeValue(els, 'src', url);
     }
 
     function hasElementWithAttributeValue( elements, attr, value ) {
         console.log('searching: ', attr, value);
-        console.table(elements);
         if ( elements && elements.length > 0 ) {
             for(var i=0, max=elements.length; i<max; i++) {
-                console.log('found ', value);
-                if ( elements[i][attr] == value ) return true;
+                console.log( elements[i] );
+                if ( elements[i][attr] == value ) {
+                    console.log('found ', value);
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    function getGroupedCallback( callback, loading ) {
-        return function groupedCallback() {
-            console.log('groupedCallback:before', loading);
-            loading = loading - 1;
-            if ( loading <= 0 ) callback();
-            console.log('groupedCallback:after', loading);
-        };
-    }
+    /*
+        toast, the simple resource loader
 
-    function getResourceLoader( url, callback ) {
-        if (/\.css[^\.]*$/.test( url )){
-            return createLinkLoader( url, callback );
-        } else {
-            return createScriptLoader( url, callback );
-        }
-    }
-
-    function createScriptLoader( url, callback ) {
-        var x = doc.createElement( 'script' );
-        x.type = 'text/javascript';
-        if ( callback ) trackResourceLoad( x, callback );
-        return function fetch() {
-            x.src = url;
-            return x;
-        };
-    }
-
-    function createLinkLoader( url, callback ) {
-        var x = doc.createElement( 'link' );
-        x.type = 'text/css';
-        x.rel = 'stylesheet';
-        if ( callback ) trackResourceLoad( x, callback );
-        return function fetch() {
-            x.href = url;
-            return x;
-        };
-    }
-
-    function trackResourceLoad( el, callback ) {
-        var loaded = false;
-        el.onload = el.onreadystatechange = function () {
-            if ((el.readyState && el.readyState !== 'complete' && el.readyState !== 'loaded') || loaded) {
-                return false;
-            }
-            el.onload = el.onreadystatechange = null;
-            loaded = true;
-            callback();
-        };
-        el.async = true;
-    }
-    
-    var cb = function(){ console.log('loaded!'); } ,
-        s = 'https://gist.github.com/aFarkas/936413/raw/472d2284314dca231b46443513114f47a73ea742/sssl.js',
-        c = 'http://www.csszengarden.com/211/211.css?v=8may2013';
-
-    load([c, s], cb);
+        Version     : 1.0.0
+        Author      : Aurélien Delogu (dev@dreamysource.fr)
+        Homepage    : https://github.com/pyrsmk/toast
+        License     : MIT
+    */
+    function toast(){var e=document,t=e.getElementsByTagName("head")[0],n=this.setTimeout,r="createElement",i="appendChild",s="addEventListener",o="onreadystatechange",u="styleSheet",a=10,f=0,l=function(){--f},c,h=function(e,r,i,s){if(!t)n(function(){h(e)},a);else if(e.length){c=-1;while(i=e[++c]){if((s=typeof i)=="function"){r=function(){return i(),!0};break}if(s=="string")p(i);else if(i.pop){p(i[0]),r=i[1];break}}d(r,Array.prototype.slice.call(e,c+1))}},p=function(n,s){++f,/\.css[^\.]*$/.test(n)?(s=e[r]("link"),s.rel=u,s.href=n,t[i](s),v(s)):(s=e[r]("script"),s.src=n,t[i](s),s[o]===null?s[o]=m:s.onload=l)},d=function(e,t){if(!f)if(!e||e()){h(t);return}n(function(){d(e,t)},a)},v=function(e){if(e.sheet||e[u]){l();return}n(function(){v(e)},a)},m=function(){/ded|co/.test(this.readyState)&&l()};h(arguments)};
 
 })();
