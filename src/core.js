@@ -77,6 +77,7 @@ var core = (function() {
     ItemRepository.prototype.get = function get( id ) {
         var entity = this._ls.get( id );
 
+        if ( !entity ) return null;
         if ( typeof this._Model === 'undefined' ) return entity;
         return this._toModel( entity );
     };

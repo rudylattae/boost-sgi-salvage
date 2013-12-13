@@ -63,26 +63,25 @@ var main = (function($) {
         return new core.ItemRepository( depot(namespace, options), models.Item );
     }
 
-    function wireup() {
+    function main() {
         var dataSource = new core.TableRowIterator($('#bid_items'), console),
             repo = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'}),
             importer = new core.ItemSummaryImporter( dataSource, repo );
 
-        return importer;
-    }
+        importer.run();
 
-    function main( holdIt ) {
-        var importer = wireup();
+        var repo = importer._repo,
+            item = repo.get('M132238'),
+            item2 = repo.get('N101636');
 
-        if (holdIt) return importer;
-        else importer.run();
+        console.log(item.detailUrl());
+        console.log(item2.detailUrl());
     }
 
 
     return { 
         main: main,
-        createRepo: createRepo,
-        wireup: wireup
+        createRepo: createRepo
     };
 
 })(jQuery);

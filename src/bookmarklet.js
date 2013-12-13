@@ -10,11 +10,17 @@
 
     main();
 
-
     function main() {
         if ( !isAvailable( js ) ) {
-            toast(js, css);
+            console.log('toasting');
+            toast(js, css, ready);
+        } else {
+            ready();
         }
+    }
+
+    function ready() {
+        boostSgiSalvage.main.main();
     }
 
     function isAvailable( url ) {
@@ -35,12 +41,9 @@
     }
 
     function hasElementWithAttributeValue( elements, attr, value ) {
-        console.log('searching: ', attr, value);
         if ( elements && elements.length > 0 ) {
             for(var i=0, max=elements.length; i<max; i++) {
-                console.log( elements[i] );
                 if ( elements[i][attr] == value ) {
-                    console.log('found ', value);
                     return true;
                 }
             }
