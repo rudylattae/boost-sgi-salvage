@@ -64,7 +64,8 @@ module.exports = function(grunt) {
                 options: {
                     mangle: {toplevel: true},
                     squeeze: {sequences: false, conditionals: false, hoist_vars: true},
-                    codegen: {quote_keys: false}
+                    codegen: {quote_keys: false},
+                    report: 'min'
                 },
                 src: 'src/bookmarklet.js',
                 dest: 'build/<%= meta.distBookmarklet %>'
