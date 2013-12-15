@@ -60,7 +60,7 @@ var main = (function($) {
 
 
     function createRepo( namespace, options ) {
-        return new core.ItemRepository( depot(namespace, options), models.Item );
+        return new core.GenericRepository( depot(namespace, options), models.Item );
     }
 
     function main() {

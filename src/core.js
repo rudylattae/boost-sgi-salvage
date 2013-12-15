@@ -47,7 +47,7 @@ var core = (function() {
 
 
 
-    function ItemRepository( localStorageWrapper, mapper ) {
+    function GenericRepository( localStorageWrapper, mapper ) {
         if ( typeof localStorageWrapper === 'undefined' ) 
             throw new Error('You must provide a localStorageWrapper');
         if ( typeof mapper !== 'undefined' && (!mapper.toModel && !mapper.toJS) )
@@ -57,28 +57,28 @@ var core = (function() {
         this._mapper = mapper;
     }
 
-    ItemRepository.prototype.add = function add( item ) {
+    GenericRepository.prototype.add = function add( item ) {
         if ( typeof this._mapper === 'undefined' ) return this._ls.save( item );
         return this._ls.save( this._toJS( item ) );
     };
 
-    ItemRepository.prototype.update = function update( item ) {
+    GenericRepository.prototype.update = function update( item ) {
         if ( typeof this._mapper === 'undefined' ) return this._ls.update( item );
         return this._ls.update( this._toJS( item ) );
     };
 
-    ItemRepository.prototype.remove = function remove( query ) {
+    GenericRepository.prototype.remove = function remove( query ) {
         return this._ls.destroy( query );
     };
 
-    ItemRepository.prototype.find = function find( query ) {
+    GenericRepository.prototype.find = function find( query ) {
         var entities = this._ls.find( query );
 
         if ( typeof this._mapper === 'undefined' ) return entities;
         return this._toModels( entities );
     };
 
-    ItemRepository.prototype.get = function get( id ) {
+    GenericRepository.prototype.get = function get( id ) {
         var entity = this._ls.get( id );
 
         if ( !entity ) return null;
@@ -86,18 +86,18 @@ var core = (function() {
         return this._toModel( entity );
     };
 
-    ItemRepository.prototype.all = function all() {
+    GenericRepository.prototype.all = function all() {
         var entities = this._ls.all();
 
         if ( typeof this._mapper === 'undefined' ) return entities;
         return this._toModels( entities );
     };
 
-    ItemRepository.prototype.count = function count() {
+    GenericRepository.prototype.count = function count() {
         return this._ls.size();
     };
 
-    ItemRepository.prototype._toModels = function( entities ) {
+    GenericRepository.prototype._toModels = function( entities ) {
         var i = 0,
             max = entities.length,
             models = [];
@@ -108,19 +108,19 @@ var core = (function() {
         return models;
     };
 
-    ItemRepository.prototype._toModel = function( entity ) {
+    GenericRepository.prototype._toModel = function( entity ) {
         return new this._mapper.toModel( entity );
     };
 
-    ItemRepository.prototype._toJS = function( model ) {
+    GenericRepository.prototype._toJS = function( model ) {
         return new this._mapper.toJS( model );
     };
 
 
 
-    function ItemSummaryImporter( tableRowIterator, itemRepository ) {
+    function ItemSummaryImporter( tableRowIterator, repository ) {
         this._iter = tableRowIterator;
-        this._repo = itemRepository;
+        this._repo = repository;
     }
 
     ItemSummaryImporter.prototype.run = function( force ) {
@@ -135,7 +135,7 @@ var core = (function() {
 
     return {
         TableRowIterator: TableRowIterator,
-        ItemRepository: ItemRepository,
+        GenericRepository: GenericRepository,
         ItemSummaryImporter: ItemSummaryImporter
     };
 })();

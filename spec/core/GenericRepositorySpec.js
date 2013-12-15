@@ -1,4 +1,4 @@
-describe('core.ItemRepository', function() {
+describe('core.GenericRepository', function() {
 
     function ItemModel( data ) {}
     ItemModel.prototype.toJS = function toJS() {};
@@ -13,21 +13,21 @@ describe('core.ItemRepository', function() {
 
         it('requires a localStorageWrapper', function() {
             function createWithoutLocalStorageWrapper() {
-                return new core.ItemRepository();
+                return new core.GenericRepository();
             }
 
             expect( createWithoutLocalStorageWrapper ).toThrow('You must provide a localStorageWrapper');
         });
 
         it('initializes with a localStorageWrapper', function() {
-            var repo = new core.ItemRepository({});
+            var repo = new core.GenericRepository({});
 
             expect( repo ).not.toBe( null );
         });
 
         it('when initialized with a mapper, checks that it provides two-way conversion', function() {
             function createWithInvalidMapper() {
-                return new core.ItemRepository({}, {});
+                return new core.GenericRepository({}, {});
             }
 
             expect( createWithInvalidMapper ).toThrow('Mapper must implement "toModel" and "toJS"');
@@ -35,7 +35,7 @@ describe('core.ItemRepository', function() {
 
         it('initializes with a valid mapper', function() {
             var dummyMapper = {toModel:function(){}, toJS:function(){}};
-            var repo = new core.ItemRepository({}, dummyMapper);
+            var repo = new core.GenericRepository({}, dummyMapper);
 
             expect( repo ).not.toBe( null );
         });
@@ -59,7 +59,7 @@ describe('core.ItemRepository', function() {
             localStorageWrapper.find.andReturn( records.slice(1,3) );
             localStorageWrapper.all.andReturn( records );
 
-            repo = new core.ItemRepository( localStorageWrapper );
+            repo = new core.GenericRepository( localStorageWrapper );
         });
 
         it('#get, returns found entity', function() {
@@ -118,7 +118,7 @@ describe('core.ItemRepository', function() {
             localStorageWrapper.find.andReturn( records.slice(1,3) );
             localStorageWrapper.all.andReturn( records );
 
-            repo = new core.ItemRepository(localStorageWrapper, simpleMapper);
+            repo = new core.GenericRepository(localStorageWrapper, simpleMapper);
 
             this.addMatchers({
                 toBeAnInstanceOf: function ( expected ) {
