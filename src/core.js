@@ -47,20 +47,25 @@ var core = (function() {
 
 
 
-    function ItemRepository( localStorageWrapper, Model ) {
-        if ( typeof localStorageWrapper === 'undefined' ) throw new Error('You must provide a localStorageWrapper');
+    function ItemRepository( localStorageWrapper, mapper ) {
+        if ( typeof localStorageWrapper === 'undefined' ) 
+            throw new Error('You must provide a localStorageWrapper');
+        if ( typeof mapper !== 'undefined' && (!mapper.toModel && !mapper.toJS) )
+             throw new Error('Mapper must implement "toModel" and "toJS"');
+
         this._ls = localStorageWrapper;
-        this._Model = Model;
+        this._Model = mapper;
+        this._mapper = mapper;
     }
 
     ItemRepository.prototype.add = function add( item ) {
-        if ( typeof this._Model === 'undefined' ) return this._ls.save( item );
-        return this._ls.save( item.toJS() );
+        if ( typeof this._mapper === 'undefined' ) return this._ls.save( item );
+        return this._ls.save( this._toJS( item ) );
     };
 
     ItemRepository.prototype.update = function update( item ) {
-        if ( typeof this._Model === 'undefined' ) return this._ls.update( item );
-        return this._ls.update( item.toJS() );
+        if ( typeof this._mapper === 'undefined' ) return this._ls.update( item );
+        return this._ls.update( this._toJS( item ) );
     };
 
     ItemRepository.prototype.remove = function remove( query ) {
@@ -70,7 +75,7 @@ var core = (function() {
     ItemRepository.prototype.find = function find( query ) {
         var entities = this._ls.find( query );
 
-        if ( typeof this._Model === 'undefined' ) return entities;
+        if ( typeof this._mapper === 'undefined' ) return entities;
         return this._toModels( entities );
     };
 
@@ -78,7 +83,7 @@ var core = (function() {
         var entity = this._ls.get( id );
 
         if ( !entity ) return null;
-        if ( typeof this._Model === 'undefined' ) return entity;
+        if ( typeof this._mapper === 'undefined' ) return entity;
         return this._toModel( entity );
     };
 
@@ -105,7 +110,11 @@ var core = (function() {
     };
 
     ItemRepository.prototype._toModel = function( entity ) {
-        return new this._Model( entity );
+        return new this._mapper.toModel( entity );
+    };
+
+    ItemRepository.prototype._toJS = function( model ) {
+        return new this._mapper.toJS( model );
     };
 
 
