@@ -54,7 +54,6 @@ var core = (function() {
              throw new Error('Mapper must implement "toModel" and "toJS"');
 
         this._ls = localStorageWrapper;
-        this._Model = mapper;
         this._mapper = mapper;
     }
 
@@ -90,7 +89,7 @@ var core = (function() {
     ItemRepository.prototype.all = function all() {
         var entities = this._ls.all();
 
-        if ( typeof this._Model === 'undefined' ) return entities;
+        if ( typeof this._mapper === 'undefined' ) return entities;
         return this._toModels( entities );
     };
 
