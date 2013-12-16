@@ -30,5 +30,18 @@ var models = (function() {
     };
 
 
-    return { Item: Item };
+    var itemMapper = {
+        toModel: function toModel( entity ) {
+            if ( entity instanceof Item ) return entity;
+            return new Item( entity );
+        },
+
+        toJS: function toJS( model ) {
+            if ( model instanceof Item ) return model.data;
+            return model;
+        }
+    };
+
+
+    return { Item: Item, itemMapper: itemMapper };
 })();

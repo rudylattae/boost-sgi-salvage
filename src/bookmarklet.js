@@ -12,7 +12,6 @@
 
     function main() {
         if ( !isAvailable( js ) ) {
-            console.log('toasting');
             toast(js, css, ready);
         } else {
             ready();

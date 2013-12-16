@@ -58,9 +58,8 @@ var main = (function($) {
         getItemSummariesFromTable( t );
     }
 
-
     function createRepo( namespace, options ) {
-        return new core.GenericRepository( depot(namespace, options), models.Item );
+        return new core.GenericRepository( depot(namespace, options), models.itemMapper );
     }
 
     function main() {
@@ -69,13 +68,6 @@ var main = (function($) {
             importer = new core.ItemSummaryImporter( dataSource, repo );
 
         importer.run();
-
-        var repo = importer._repo,
-            item = repo.get('M132238'),
-            item2 = repo.get('N101636');
-
-        console.log(item.detailUrl());
-        console.log(item2.detailUrl());
     }
 
 
