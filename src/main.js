@@ -1,16 +1,12 @@
 var main = (function($) {
     "use strict";
 
+    var repo,                       // "singleton" stash of all repos
+        bidItemsDataSource,         // "singleton" stash of datasources
+        bidItemsImporter;           // "singleton" stash of datasources
 
-    function preparetableForThumbnails( table ) {
-        table.find('thead tr').prepend('<th class="header">&nbsp;</th>');
-        table.find('tbody tr').each(function(i, row) {
-            var me = $(row);
-            if ( me.find('.thumb').length === 0 ) {
-                me.prepend('<td class="js-controls"></td>');            
-            }
-        });
-    }
+
+
 
     function getItemSummariesFromTable( table ) {
 
@@ -58,22 +54,35 @@ var main = (function($) {
         getItemSummariesFromTable( t );
     }
 
+
     function createRepo( namespace, options ) {
         return new core.GenericRepository( depot(namespace, options), models.itemMapper );
     }
 
-    function main() {
-        var dataSource = new core.TableRowIterator($('#bid_items'), console),
-            repo = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'}),
-            importer = new core.ItemSummaryImporter( dataSource, repo );
+    function getBidItemsDataSource() {
+        if ( !bidItemsDataSource ) bidItemsDataSource = new core.TableRowIterator($('#bid_items'), console);
+        return bidItemsDataSource;
+    }
 
-        importer.run();
+    function getRepo() {
+        if ( !repo ) repo = createRepo('boostSgiSalvage_items', {idAttribute:'stockNumber'});
+        return repo;
+    }
+
+    function main() {
+        // importer = new core.ItemSummaryImporter( dataSource, repo );
+        // importer.run();
+
+        ///
+
+        betterBidItems.init();
     }
 
 
     return { 
         main: main,
-        createRepo: createRepo
+        createRepo: createRepo,
+        getRepo: getRepo
     };
 
 })(jQuery);

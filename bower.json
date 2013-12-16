@@ -29,6 +29,7 @@
     "jasmine-jquery": "~1.5.93"
   },
   "dependencies": {
-    "depot": "~0.1.6"
+    "depot": "~0.1.6",
+    "riotjs": "~0.9.6"
   }
 }

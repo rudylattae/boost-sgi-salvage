@@ -44,6 +44,7 @@ module.exports = function(grunt) {
                     'src/core.js', 
                     'src/utils.js', 
                     'src/models.js', 
+                    'src/betterBidItems.js', 
                     'src/main.js', 
                     'src/api.js'
                 ],
