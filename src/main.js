@@ -26,7 +26,7 @@ var main = (function($) {
 
         ///
 
-        betterBidItems.init();
+        photosAndStars.init();
     }
 
 

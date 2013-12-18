@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                     'src/core.js', 
                     'src/utils.js', 
                     'src/models.js', 
-                    'src/betterBidItems.js', 
+                    'src/features/photosAndStars.js', 
                     'src/main.js', 
                     'src/api.js'
                 ],
@@ -73,6 +73,12 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            templates: {
+                files: [ {'dist/templates.html': 'src/features/templates.html'} ]
+            }
+        },
+
         js2uri: {
             'dist/<%= meta.distBookmarklet %>' : ['<%= uglify.bkm.dest %>']
         },
@@ -90,7 +96,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('js2uri');
 
     // Tasks
-    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'js2uri']);
+    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'copy', 'js2uri']);
     grunt.registerTask('devcycle', ['default', 'watch']);
 
 };

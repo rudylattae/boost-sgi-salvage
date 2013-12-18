@@ -4,7 +4,7 @@ var api = {
     core: core,
     utils: utils,
     models: models,
-    betterBidItems: betterBidItems,
+    photosAndStars: photosAndStars,
     main: main
 };
 
