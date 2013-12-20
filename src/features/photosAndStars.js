@@ -2,7 +2,8 @@ var photosAndStars = (function( $ ) {
     "use strict";
 
 
-    var mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
+    var ready = false,
+        mainPhotoUrlTemplate = '/images/salvage_images/{stockNumber}/main/1.jpg',
         photoAndStarTemplate = 
             '<div class="enhancement--photo-and-star" target="_blank"> \
                 <img alt="loading..." src="{src}" width="245"/> \
@@ -81,6 +82,8 @@ var photosAndStars = (function( $ ) {
 
 
     function init() {
+        if ( ready ) return;
+
         var ctrl = new Actions( $('#searchedLocation') ),
             booster = new Booster( $('#bid_items') ); 
 
@@ -91,7 +94,9 @@ var photosAndStars = (function( $ ) {
 
         booster.on('starItem', function( eh ) {
             console.log( 'starred!', eh );
-        })
+        });
+
+        ready = true;
     }
 
     return { 
