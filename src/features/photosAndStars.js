@@ -6,7 +6,7 @@ var photosAndStars = (function( $ ) {
         photoAndStarTemplate = 
             '<div class="enhancement--photo-and-star" target="_blank"> \
                 <img alt="loading..." src="{src}" width="245"/> \
-                <span class="js-star-item" title="Star item #{stockNumber}">&#x02605;</span> \
+                <span class="js-star-item" data-stock-number="{stockNumber}" title="Star item #{stockNumber}">&#x02605;</span> \
             </div>';
 
     function Actions( el ) {
@@ -24,7 +24,7 @@ var photosAndStars = (function( $ ) {
 
 
     function Booster( el ) {
-        var self = this;
+        var self = $.observable(this);
 
         self.boost = function( enhancement ) {
             init();
@@ -38,6 +38,12 @@ var photosAndStars = (function( $ ) {
             el.find('tbody tr').each(function(i, row) {
                 $(row).prepend('<td class="js-enhancements"></td>'); 
             });
+
+            el.on('click', '.js-star-item', function() {
+                console.log(' clicked ', this );
+                self.trigger('starItem', $(this).attr('data-stock-number'));
+            })
+
             el.attr('data-boost-ready', true);
         }
 
@@ -68,7 +74,7 @@ var photosAndStars = (function( $ ) {
 
             var thumbUrl = mainPhotoUrlTemplate.replace( '{stockNumber}', stockNumber ),
                 component = $.render( photoAndStarTemplate, { src: thumbUrl, stockNumber: stockNumber } );
-                
+
             $('.js-enhancements', row).append( component ); 
         }
     };
@@ -82,6 +88,10 @@ var photosAndStars = (function( $ ) {
         ctrl.on('showPhotosAndStars', function() {
             booster.boost( enhancements.showPhotoAndStar );
         });
+
+        booster.on('starItem', function( eh ) {
+            console.log( 'starred!', eh );
+        })
     }
 
     return { 
