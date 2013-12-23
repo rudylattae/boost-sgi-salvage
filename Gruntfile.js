@@ -83,6 +83,17 @@ module.exports = function(grunt) {
             'dist/<%= meta.distBookmarklet %>' : ['<%= uglify.bkm.dest %>']
         },
 
+        harp: {
+            server: {
+                server: true,
+                source: 'docs'
+            },
+            dist: {
+                source: 'docs',
+                dest: 'build/docs'
+            }
+        },
+
         watch: {
             options: { 
                 nonull: true

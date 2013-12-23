@@ -3,4 +3,5 @@ dist
 node_modules
 bower_components
 
+_gh-pages
 .DS_Store
