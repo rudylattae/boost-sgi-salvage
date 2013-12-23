@@ -90,7 +90,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 source: 'docs',
-                dest: 'build/docs'
+                dest: '_gh-pages'
             }
         },
 
