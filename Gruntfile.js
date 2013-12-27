@@ -103,6 +103,16 @@ module.exports = function(grunt) {
             }
         },
 
+        shell: {
+            preserveDocs: {
+                command: [
+                    'cd _gh-pages',
+                    'git checkout .nojekyl README.md',
+                    'cd ..'
+                ].join('&&')
+            }
+        },
+
         watch: {
             options: { 
                 nonull: true
@@ -117,7 +127,7 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'copy', 'js2uri']);
-    grunt.registerTask('docs', ['harp:dist', 'githubPages:deploy']);
+    grunt.registerTask('docs', ['harp:dist', 'shell:preserveDocs', 'githubPages:deploy']);
     grunt.registerTask('devcycle', ['default', 'watch']);
 
 };

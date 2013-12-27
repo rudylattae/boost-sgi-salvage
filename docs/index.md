@@ -4,6 +4,6 @@
 
 Bookmarklet: 
 
-More to come...
+More to come... or not... or ...
 
 Copyright (c) 2013 +++
