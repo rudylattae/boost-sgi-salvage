@@ -94,6 +94,15 @@ module.exports = function(grunt) {
             }
         },
 
+        githubPages: {
+            deploy: {
+                options: {
+                    commitMessage: 'Update docs'
+                },
+                src: '_gh-pages'
+            }
+        },
+
         watch: {
             options: { 
                 nonull: true
@@ -108,6 +117,7 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('default', ['bower_concat', 'concat', 'uglify', 'copy', 'js2uri']);
+    grunt.registerTask('docs', ['harp:dist', 'githubPages:deploy']);
     grunt.registerTask('devcycle', ['default', 'watch']);
 
 };
