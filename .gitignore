@@ -5,6 +5,3 @@ bower_components
 
 .DS_Store
 
-# preserve these b'n grunt-githubPages runs
-.nojekyl
-README.md
