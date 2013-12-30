@@ -1,7 +1,7 @@
-BOOST! SGI Salvage
+Mod SGI Salvage
 ===================
 
-Simplify the process of looking at items on auction at SGI Salvage.
+UX tweaks to the SGI Salvage, bonus JS api is unintended
 
 Why?
 -------
