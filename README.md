@@ -1,7 +1,7 @@
 Mod SGI Salvage
 ===================
 
-UX tweaks to the SGI Salvage, bonus JS api is unintended
+UX tweaks to the SGI Salvage, bonus JS api is unintended.
 
 Why?
 -------

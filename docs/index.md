@@ -1,4 +1,6 @@
-# BOOST! SGI Salvage
+# Mod SGI Salvage
+
+UX tweaks to the SGI Salvage, bonus JS api is unintended.
 
 ## Latest release
 
